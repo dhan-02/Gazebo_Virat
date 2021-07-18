@@ -7,7 +7,7 @@
       <background>0.7 0.7 0.7 1</background>
     </scene>
 
-    <include>
+    <!-- <include>
         <uri>model://bot2</uri>
         <static>false</static>
         <pose>0 0 0 0 0 0</pose>
@@ -19,6 +19,11 @@
     </include>
     <include>
         <uri>model://castors1</uri>
+        <static>false</static>
+        <pose>1 0 0.5 0 0 0</pose>
+    </include> -->
+    <include>
+        <uri>model://virat</uri>
         <static>false</static>
         <pose>1 0 0.5 0 0 0</pose>
     </include>
