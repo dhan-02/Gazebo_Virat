@@ -21,12 +21,12 @@
         <uri>model://castors1</uri>
         <static>false</static>
         <pose>1 0 0.5 0 0 0</pose>
-    </include> -->
+    </include>
     <include>
         <uri>model://virat</uri>
         <static>false</static>
         <pose>1 0 0.5 0 0 0</pose>
-    </include>
+    </include> -->
     <model name='course'>
       <static>1</static>
       <link name='course_link'>
