@@ -15,4 +15,5 @@
         <arg name="paused" value="$(arg pause)" />
         <arg name="use_sim_time" value="true" />
     </include>
+    <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" output="screen" args="-file $(find Gazebo_Virat)/urdf/virat.urdf -urdf -z 1 -model virat"/>
 </launch>
