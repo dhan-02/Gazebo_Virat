@@ -22,8 +22,8 @@ def callback(msg):
         circles = np.round(circles[0, :]).astype("int")
 	for (x, y, r) in circles:
 		cv2.rectangle(img, (x - 5, y - 5), (x + 5, y + 5), (0, 0, 255), -1)
-        cv2.imshow("frame",img)
-        cv2.waitKey(1)
+		cv2.imshow("frame",img)
+		cv2.waitKey(1)
 
 if __name__ == '__main__':
     rospy.init_node('object_detection')
