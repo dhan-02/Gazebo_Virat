@@ -13,21 +13,17 @@ def callback(msg):
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     mask_w = cv2.inRange(gray, 240, 255)
-    cv2.imshow("frame",mask_w)
-    cv2.waitKey(1)
-    edged = cv2.Canny(mask_w, 30, 200)
-    
-    cnts = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = cv2.findContours(mask_w, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
     for c in cnts:
         if(cv2.contourArea(c) > 150):
             x,y,w,h = cv2.boundingRect(c)
             cv2.rectangle(img,(int(x),int(y)),(int(x+w),int(y+h)),(0,0,255),2)
-            # print(cv2.contourArea(c))
+            
             org = (int(x),int(y))
             cv2.putText(img,str(int(cv2.contourArea(c))),org,cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255))
-            # cv2.imshow("img",img)
-            # cv2.waitKey(1)
+            cv2.imshow("img",img)
+            
 
     # cnt = cnts[0]
     # cv2.imshow("Show",img)
