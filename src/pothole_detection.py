@@ -33,16 +33,21 @@ class Pothole_Detection:
         cnts = cv2.findContours(mask_w, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
         centres = Centres()
-        transform = self.tf_buffer.lookup_transform("odom",
-                                       self.virat_camera.tfFrame(),
-                                       rospy.Time(0)) 
-        if(cv2.contourArea(c) > 500):
-            x,y,w,h = cv2.boundingRect(c)
-            cv2.rectangle(img,(int(x+w/2),int(y+h/2)),(int(x+5+w/2),int(y+5+h/2)),(0,0,255),-1)
-            centres.x.append(int(x+w/2))
-            centres.y.append(int(y+h/2))
-            # org = (int(x),int(y))
-            # cv2.putText(img,str(int(cv2.contourArea(c))),org,cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255))
+        try:
+            transform = self.tf_buffer.lookup_transform("odom",
+                                       "camera_link",
+                                       rospy.Time(0))
+        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
+            pass
+        
+        for c in cnts:                                
+            if(cv2.contourArea(c) > 500):
+                x,y,w,h = cv2.boundingRect(c)
+                cv2.rectangle(img,(int(x+w/2),int(y+h/2)),(int(x+5+w/2),int(y+5+h/2)),(0,0,255),-1)
+                centres.x.append(int(x+w/2))
+                centres.y.append(int(y+h/2))
+                # org = (int(x),int(y))
+                # cv2.putText(img,str(int(cv2.contourArea(c))),org,cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255))
         cv2.imshow("img",img)
         cv2.waitKey(1)
         self.pub.publish(centres)
