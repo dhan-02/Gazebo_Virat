@@ -209,3 +209,6 @@ include_directories(
 
 add_executable(teleop src/teleop.cpp)
 target_link_libraries(teleop ${catkin_LIBRARIES})
+
+add_executable(odom_bot2 src/odom_publisher.cpp)
+target_link_libraries(odom_bot2 ${catkin_LIBRARIES})

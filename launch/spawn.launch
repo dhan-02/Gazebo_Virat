@@ -2,7 +2,7 @@
 <launch>
     <arg name="debug" default="false" />
     <arg name="gui" default="true" />
-    <arg name="pause" default="true" />
+    <arg name="pause" default="false" />
     <arg name="world" default="$(find Gazebo_Virat)/worlds/world.world" />
 
     <!-- include gazebo_ros launcher-->
@@ -15,5 +15,5 @@
     </include>
     <param name="robot_description" textfile="$(find Gazebo_Virat)/urdf/virat.urdf" />
     <node name="spawn_robot_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model virat"/>
-    <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="1 0 0 0 0 0 1 odom bot2 100" />
+    <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0.2 0 0.27 0 0.5 0 bot2 camera_link 100" />
 </launch>
